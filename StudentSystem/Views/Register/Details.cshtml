@@ -1,0 +1,50 @@
+﻿@model IEnumerable <StudentSystem.Models.Student>
+    @using StudentSystem.Models;
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var item in Model)
+        {
+            <dt>
+                @Html.Label("Student Name: ")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.stuName)
+            </dd>
+
+            <dt>
+                @Html.Label("Email: ")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.email)
+            </dd>
+
+
+
+            <dt>
+                @Html.Label("Phone No: ")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.mobNo)
+            </dd>
+
+            <dt>
+                @Html.Label("Address: ")
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Address)
+            </dd>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { name = item.stuName }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        }
+    </dl>
+</div>
+

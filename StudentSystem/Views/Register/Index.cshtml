@@ -1,0 +1,22 @@
+﻿
+@model IEnumerable<StudentSystem.Models.Student>
+@using StudentSystem.Models;
+
+<h2>
+    Posted Values to Db
+</h2>
+<ul>
+    @{ int i = 0;
+        foreach (var item in Model)
+        {
+            ++i;
+
+            <li>
+                @Html.Label("Student") @i &nbsp;<span>:</span>
+                @Html.ActionLink(item.stuName, "Details", new { name = item.stuName })
+
+            </li>
+            
+        }
+    }
+</ul>
