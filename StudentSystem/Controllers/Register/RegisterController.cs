@@ -68,7 +68,7 @@ namespace StudentSystem.Controllers.Register
 
         // GET: Register/Edit/5
         public ActionResult Edit(string name)
-        {
+       {
             var query = Query.EQ("stuName", name);
             var stu = MongoInst.MCollection.FindOne(query);
             
@@ -77,51 +77,49 @@ namespace StudentSystem.Controllers.Register
 
         // POST: Register/Edit/5
         [HttpPost]
-        public ActionResult Edit(ObjectId id, Student stud)
+        public ActionResult Edit(string id, Student stud)
         {
-            /* try
-             {
-               var updateQuery = Builders<Student>.Update.Set("stuName",stud.stuName)
-                                                .Set("pwd", stud.pwd)
-                                                .Set("email", stud.email)
-                                                .Set("mobNo", stud.mobNo)
-                                                .Set("Address", stud.Address);
-
-
-            */
-
-
-
-            var query = Query.EQ("_id", id);
 
             if (ModelState.IsValid) {
-                    var coll = MongoInst.db.GetCollection("STUDENT");
-                   var result = coll.Update(query,Update.Replace(stud),UpdateFlags.None);
+                var updateQuery = Update.Set("email", stud.email)
+                                            .Set("mobNo", stud.mobNo)
+                                            .Set("Address", stud.Address);
+
+
+
+
+
+                var query = Query.EQ("_id", new ObjectId(id));
+
+
+                MongoInst.MCollection.Update(query, updateQuery);
                 }
 
                 return RedirectToAction("Index");
-            /* }
-             catch
-             {
-                 return RedirectToAction("Error");
-             }*/
+           
         }
 
 
 
         // GET: Register/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string name)
         {
-            return View();
+            var query = Query.EQ("stuName", name);
+            var stu = MongoInst.MCollection.FindOne(query);
+
+            return View(stu);
         }
 
         // POST: Register/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string name, Student stud)
         {
             try
             {
-                // TODO: Add delete logic here
+                var query = Query.EQ("stuName", name);
+                var stu = MongoInst.MCollection.FindOne(query);
+                MongoInst.MCollection.Remove(query);
+
 
                 return RedirectToAction("Index");
             }

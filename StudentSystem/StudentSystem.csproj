@@ -209,6 +209,7 @@
     <Content Include="Views\Register\Details.cshtml" />
     <Content Include="Views\Register\Edit.cshtml" />
     <Content Include="Views\Register\Error.cshtml" />
+    <Content Include="Views\Register\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -41,8 +41,10 @@
                 @Html.DisplayFor(model => item.Address)
             </dd>
             <p>
-                @Html.ActionLink("Edit", "Edit", new { name = item.stuName }) |
+                @Html.ActionLink("Edit", "Edit", new { name = item.stuName, id = item._id })
+                @Html.ActionLink("Delete", "Delete", new { name = item.stuName })
                 @Html.ActionLink("Back to List", "Index")
+
             </p>
         }
     </dl>
