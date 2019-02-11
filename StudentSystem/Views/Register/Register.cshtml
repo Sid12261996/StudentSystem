@@ -1,16 +1,15 @@
 ﻿@model StudentSystem.Models.Student
 
-
 <div class="Form">
     <h1>Register </h1>
-    <form  action ="" >
+    <form  id="">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.Label("Student Name", new { @class = "", @id = "Sname" })<br />
         @Html.TextBoxFor(Model => Model.stuName, new { @class = "name form-control", })
         @Html.ValidationMessageFor(model => model.stuName, "", new { @class = "text-danger" })
         <br />
-        <p class="Error ErrorMsg"></p>
+       
         @Html.Label("Email")<br />
         @Html.TextBoxFor(Model => Model.email, new { @class = "name form-control" })
         @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
@@ -19,7 +18,7 @@
         @Html.PasswordFor(Model => Model.pwd, new { @class = "name form-control", @id = "pwd" })
         @Html.ValidationMessageFor(model => model.pwd, "", new { @class = "text-danger" })
 
-        <p class="Error ErrorMsg"></p><br />
+                                        <br />
         @Html.Label("Confirm Password")<br />
         @Html.Password("Confirm", "", new { @class = "name form-control", @id = "cpwd" })
 
@@ -30,7 +29,7 @@
         <br />
         @Html.Label("Address")<br />
         @Html.TextBoxFor(Model => Model.Address, new { @class = "name form-control" })
-        @Html.ValidationMessageFor(model => model.Address)
+        @Html.ValidationMessageFor(model => model.Address, "",new {@class = "text-danger" })
         <br />
 
 

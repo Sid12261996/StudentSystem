@@ -30,12 +30,16 @@ namespace StudentSystem.Controllers.Register
         }
 
         // GET: Register/Details/5
-        public ActionResult Details( string id)
+        public ActionResult Details(string id)
         {
-            var query = Query.EQ("_id", new ObjectId(id));
+            var query =  Query.EQ("_id", new ObjectId(id)) ;
+            
+            
+
             var stu = MongoInst.MCollection.FindAs<Student>(query);
-            var dummy = stu.ToList();
-            return View(dummy);
+            
+           
+            return View(stu.ToList());
         }
 
         // GET: Register/Create
@@ -45,9 +49,10 @@ namespace StudentSystem.Controllers.Register
         }
         public ActionResult Index()
         {
-           
-            var stu = MongoInst.MCollection.FindAll();
-            var dummy = stu.ToList();
+            var query = Query.NE("changeTime", "null");
+            var stu = MongoInst.MCollection.Find(query);
+            //var dum = stu.
+            var dummy = stu.ToList<Student>();
 
 
 
@@ -59,7 +64,9 @@ namespace StudentSystem.Controllers.Register
         public ActionResult Register(Student Stud)
        {
             if (ModelState.IsValid) {
+                Stud.changeTime = DateTime.Now.ToString();
                 MongoInst.MCollection.Insert(Stud);
+                
 
                 return RedirectToAction("Index");
             }
@@ -92,7 +99,7 @@ namespace StudentSystem.Controllers.Register
 
 
                 var query = Query.EQ("_id", new ObjectId(id));
-
+            stud.changeTime = DateTime.Now.ToString();
 
                 MongoInst.MCollection.Update(query, updateQuery);
                 
@@ -106,8 +113,10 @@ namespace StudentSystem.Controllers.Register
         // GET: Register/Delete/5
         public ActionResult Delete(string name)
         {
-            var query = Query.EQ("stuName", name);
+            IMongoQuery query = Query.EQ("stuName", name);
             var stu = MongoInst.MCollection.FindOne(query);
+
+            
 
             return View(stu);
         }
@@ -119,16 +128,28 @@ namespace StudentSystem.Controllers.Register
             try
             {
                 var query = Query.EQ("_id",new ObjectId(id));
-                var stu = MongoInst.MCollection.FindOne(query);
-                MongoInst.MCollection.Remove(query);
+                //var stu = MongoInst.MCollection.FindOneById(new ObjectId(id));
+               
 
+                // MongoInst.MCollection.Remove(query);
+               // var query = Query.EQ("stuName", name);
+                var updateQuery = Update.Set("changeTime", "null");
+
+
+
+                var stu = MongoInst.MCollection.Update(query, updateQuery);
 
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("error");
             }
+        }
+
+        public Student updateDate(Student stud) {
+            stud.changeTime = DateTime.Now.ToString();
+            return stud;
         }
     }
 }

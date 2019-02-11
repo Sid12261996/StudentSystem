@@ -6,12 +6,15 @@
     box-shadow: 5px 5px #756f6f;
     height: 700px;
     width: 350px;
+    background-color: red;
 }
-h1{
-    text-align:center;
+h1 {
+    
+    color: red;
 }
 body{
     padding:70px;
+    background-color:;
 }
 #butt {
     margin:30px 100px;

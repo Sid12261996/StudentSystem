@@ -14,7 +14,7 @@ namespace StudentSystem.Models
         public ObjectId _id { get; set; }
         //[BsonElement("stuName")]
         [DataType(DataType.Text)]
-        [Required][MaxLength(20)]
+        [Required] [MaxLength(20)]
         public string stuName { get; set; }
         [DataType(DataType.EmailAddress)]
         //[BsonElement("email")]
@@ -29,10 +29,13 @@ namespace StudentSystem.Models
         [MaxLength(10)]
         [DataType(DataType.PhoneNumber)]
         public string mobNo { get; set; }
-        
+
         //[BsonElement("Address")]
-        [DataType(DataType.MultilineText)][Required(ErrorMessage ="Required")]
+        [DataType(DataType.MultilineText)] [Required(ErrorMessage = "Required")]
         public string Address { get; set; }
+        
+        public string changeTime = DateTime.Now.ToString();
+      
 
 
     }
