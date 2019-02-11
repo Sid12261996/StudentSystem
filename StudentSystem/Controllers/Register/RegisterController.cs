@@ -30,9 +30,9 @@ namespace StudentSystem.Controllers.Register
         }
 
         // GET: Register/Details/5
-        public ActionResult Details( string name)
+        public ActionResult Details( string id)
         {
-            var query = Query.EQ("stuName", name);
+            var query = Query.EQ("_id", new ObjectId(id));
             var stu = MongoInst.MCollection.FindAs<Student>(query);
             var dummy = stu.ToList();
             return View(dummy);
@@ -57,20 +57,23 @@ namespace StudentSystem.Controllers.Register
         // POST: Register
         [HttpPost]
         public ActionResult Register(Student Stud)
-        {
+       {
             if (ModelState.IsValid) {
                 MongoInst.MCollection.Insert(Stud);
+
+                return RedirectToAction("Index");
             }
-              return RedirectToAction("Index");
-            
+
+            return View();
+                
            
         }
 
         // GET: Register/Edit/5
         public ActionResult Edit(string name)
        {
-            var query = Query.EQ("stuName", name);
-            var stu = MongoInst.MCollection.FindOne(query);
+            IMongoQuery query = Query.EQ("stuName", name);
+            Student stu = MongoInst.MCollection.FindOne(query);
             
             return View(stu);
         }
@@ -80,7 +83,6 @@ namespace StudentSystem.Controllers.Register
         public ActionResult Edit(string id, Student stud)
         {
 
-            if (ModelState.IsValid) {
                 var updateQuery = Update.Set("email", stud.email)
                                             .Set("mobNo", stud.mobNo)
                                             .Set("Address", stud.Address);
@@ -93,7 +95,7 @@ namespace StudentSystem.Controllers.Register
 
 
                 MongoInst.MCollection.Update(query, updateQuery);
-                }
+                
 
                 return RedirectToAction("Index");
            
@@ -112,11 +114,11 @@ namespace StudentSystem.Controllers.Register
 
         // POST: Register/Delete/5
         [HttpPost]
-        public ActionResult Delete(string name, Student stud)
+        public ActionResult Delete(string id, Student stud)
         {
             try
             {
-                var query = Query.EQ("stuName", name);
+                var query = Query.EQ("_id",new ObjectId(id));
                 var stu = MongoInst.MCollection.FindOne(query);
                 MongoInst.MCollection.Remove(query);
 

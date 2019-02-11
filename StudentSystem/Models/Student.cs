@@ -12,23 +12,26 @@ namespace StudentSystem.Models
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId _id { get; set; }
-        [BsonElement("stuName")]
+        //[BsonElement("stuName")]
         [DataType(DataType.Text)]
+        [Required][MaxLength(20)]
         public string stuName { get; set; }
         [DataType(DataType.EmailAddress)]
-        [BsonElement("email")]
+        //[BsonElement("email")]
+        [Required]
         public string email { get; set; }
-        
         [DataType(DataType.Password)]
-        [BsonElement("pwd")]
+        [Required(ErrorMessage = "Required")]
+        //[BsonElement("pwd")]
+        [MinLength(6)]
         public string pwd { get; set; }
-        
-        [BsonElement("mobNo")]
+        //[BsonElement("mobNo")]
+        [MaxLength(10)]
         [DataType(DataType.PhoneNumber)]
         public string mobNo { get; set; }
         
-        [BsonElement("Address")]
-        [DataType(DataType.MultilineText)]
+        //[BsonElement("Address")]
+        [DataType(DataType.MultilineText)][Required(ErrorMessage ="Required")]
         public string Address { get; set; }
 
 
