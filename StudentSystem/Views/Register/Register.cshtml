@@ -1,41 +1,50 @@
 ﻿@model StudentSystem.Models.Student
 
-<div class="Form">
+<div class="Form" id="FormBegin">
     <h1>Register </h1>
-    <form  id="">
+
+    <form id="Form-Body">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.Label("Student Name", new { @class = "", @id = "Sname" })<br />
-        @Html.TextBoxFor(Model => Model.stuName, new { @class = "name form-control", })
-        @Html.ValidationMessageFor(model => model.stuName, "", new { @class = "text-danger" })
+        @Html.Label("Student Name", new { @class = "form-font", @id = "Sname" })<br />
+        @Html.TextBoxFor(Model => Model.stuName, new { @class = "name form-control ", })
+        @Html.ValidationMessageFor(model => model.stuName, "", new { @class = "text-danger" })<br />
+        <span class="Error" id="nameErr"></span>
         <br />
-       
-        @Html.Label("Email")<br />
-        @Html.TextBoxFor(Model => Model.email, new { @class = "name form-control" })
-        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+
+        @Html.Label("Email", new { @class = "form-font" })<br />
+        @Html.TextBoxFor(Model => Model.email, new { @class = "name form-control " })
+        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })<br />
+        <span class="Error" id="emailErr"></span>
         <br />
-        @Html.Label("Password")<br />
+        @Html.Label("Password", new { @class = "form-font" })<br />
         @Html.PasswordFor(Model => Model.pwd, new { @class = "name form-control", @id = "pwd" })
-        @Html.ValidationMessageFor(model => model.pwd, "", new { @class = "text-danger" })
-
-                                        <br />
-        @Html.Label("Confirm Password")<br />
-        @Html.Password("Confirm", "", new { @class = "name form-control", @id = "cpwd" })
+        @Html.ValidationMessageFor(model => model.pwd, "", new { @class = "text-danger" })<br />
+        <span class="Error" id="pwdErr"></span>
 
         <br />
-        @Html.Label("Mobile Number")<br />
+        @Html.Label("Confirm Password", new { @class = "form-font" })<br />
+        @Html.Password("Confirm", "", new { @class = "name form-control", @id = "cpwd" })<br />
+        <span class="Error" id="cpwdErr"></span>
+
+        <br />
+        @Html.Label("Mobile Number", new { @class = "form-font" })<br />
+        <select id="countryCode"></select>
         @Html.TextBoxFor(Model => Model.mobNo, new { @class = "name form-control" })
-        @Html.ValidationMessageFor(model => model.mobNo, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.mobNo, "", new { @class = "text-danger" })<br />
+        <span class="Error" id="mobErr"></span>
         <br />
-        @Html.Label("Address")<br />
+        @Html.Label("Address", new { @class = "form-font" })<br />
         @Html.TextBoxFor(Model => Model.Address, new { @class = "name form-control" })
-        @Html.ValidationMessageFor(model => model.Address, "",new {@class = "text-danger" })
+        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })<br />
+        <span class="Error" id="addrErr"></span>
         <br />
 
 
 
 
-        <button id="butt" class="btn btn-success " type="submit" formmethod="post" >Submit</button>
+        <button id="butt" class="btn btn-success " type="submit" formmethod="post">Submit</button>
     </form>
-    <script src="~/Content/Validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/Validation.js" type="text/javascript"></script>
+    <script src="~/Scripts/countryCode.js"></script>
 </div>

@@ -1,27 +1,47 @@
 ﻿.Form {
     border: 1px solid #756f6f;
     border-radius: 15px;
-    margin-left: 400px;
+    margin-left: 350px;
     padding: 30px;
     box-shadow: 5px 5px #756f6f;
-    height: 700px;
+    height: 800px;
     width: 350px;
-    background-color: red;
+   
+    
+   //filter:blur(8px);
+  // -webkit-filter: blur(8px);
 }
 h1 {
-    
-    color: red;
+    font-size:54px;
+    font-family:Aharoni;
+    color: white;
+    text-align:center;
+}
+.form-font {
+    font-size: 16px;
+    font-family: Aharoni;
+    color: white;
+}
 }
 body{
     padding:70px;
-    background-color:;
+    
 }
 #butt {
     margin:30px 100px;
 
 }
-#FormBegin{
-    margin-top:30px
+#countryCode {
+
+width:50px;
+}
+#FormBegin {
+    margin-top: 30px;
+    z-index: 999999;
+    background-image: url("../Images/back.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .ErrorMsg {
     color: red;

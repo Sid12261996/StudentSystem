@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace StudentSystem.Models
 {
@@ -24,6 +25,12 @@ namespace StudentSystem.Models
         [Required(ErrorMessage = "Required")]
         //[BsonElement("pwd")]
         [MinLength(6)]
+        [MembershipPassword(
+        MinRequiredNonAlphanumericCharacters = 1,
+        MinNonAlphanumericCharactersError = "Your password needs to contain at least one symbol (!, @, #, etc).",
+        ErrorMessage = "Your password must be 6 characters long and contain at least one symbol (!, @, #, etc).",
+        MinRequiredPasswordLength = 6
+)]
         public string pwd { get; set; }
         //[BsonElement("mobNo")]
         [MaxLength(10)]
@@ -36,6 +43,9 @@ namespace StudentSystem.Models
         
         public string changeTime = DateTime.Now.ToString();
       
+        public DateTime updateTime { get; set; }
+        public DateTime deleteTime { get; set; }
+        public DateTime CreateTime { get; set; }
 
 
     }
