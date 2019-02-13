@@ -9,7 +9,7 @@
         @Html.Label("Student Name", new { @class = "form-font", @id = "Sname" })<br />
         @Html.TextBoxFor(Model => Model.stuName, new { @class = "name form-control ", })
         @Html.ValidationMessageFor(model => model.stuName, "", new { @class = "text-danger" })<br />
-        <span class="Error" id="nameErr"></span>
+        <span class="Error" id="nameErr">Error</span>
         <br />
 
         @Html.Label("Email", new { @class = "form-font" })<br />

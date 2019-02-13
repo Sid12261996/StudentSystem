@@ -40,12 +40,12 @@ namespace StudentSystem.Models
         //[BsonElement("Address")]
         [DataType(DataType.MultilineText)] [Required(ErrorMessage = "Required")]
         public string Address { get; set; }
-        
+
         public string changeTime = DateTime.Now.ToString();
-      
-        public DateTime updateTime { get; set; }
-        public DateTime deleteTime { get; set; }
-        public DateTime CreateTime { get; set; }
+        public string updateTime = DateTime.Now.ToString();
+        public string deleteTime = DateTime.Now.ToString();
+        public string CreateTime = DateTime.Now.ToString();
+
 
 
     }

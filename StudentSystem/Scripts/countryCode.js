@@ -9,8 +9,7 @@
         //applicationHeader: "bearer",
         //contentType: "application/json",
         success: function (data) {
-           // var indiaAbbr = "IN";
-           // var indiacode = "+91";
+
             countryCode.append("<option>" + "IN" + " " + "+91" + "</option>");
 
             $.each(data, function (Index, item) {
