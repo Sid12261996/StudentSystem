@@ -40,8 +40,8 @@ namespace StudentSystem.Controllers.Login
                 if (UserData.email == user.Email && UserData.pwd == user.Password) {
 
                     FormsAuthentication.SetAuthCookie(user.Email,false);
-
-                    return RedirectToAction(ReturnUrl);
+                    string dummy = ReturnUrl;
+                    return RedirectToAction("Index", "Register");
 
                 }
 
