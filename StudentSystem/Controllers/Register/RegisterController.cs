@@ -51,7 +51,7 @@ namespace StudentSystem.Controllers.Register
         {
             var query = Query.NE("changeTime", "null");
             var stu = MongoInst.MCollection.Find(query);
-            //var dum = stu.
+
             var dummy = stu.ToList<Student>();
 
 
