@@ -16,9 +16,9 @@ namespace StudentSystem.Controllers.Register
     {
         
         public mongoConnection MongoInst = new mongoConnection();
-        public Student Astudent = new Student();
-        public IEnumerable<Student> s;
-        public IMongoCollection<Student> mongo;
+        //public Student Astudent = new Student();
+        //public IEnumerable<Student> s;
+        //public IMongoCollection<Student> mongo;
     
        
        
@@ -30,9 +30,10 @@ namespace StudentSystem.Controllers.Register
         }
 
         // GET: Register/Details/5
+        [Authorize]
         public ActionResult Details(string id)
         {
-            var query =  Query.EQ("_id", new ObjectId(id)) ;
+        var query =  Query.EQ("_id", new ObjectId(id)) ;
             
             
 
@@ -47,6 +48,7 @@ namespace StudentSystem.Controllers.Register
         {
             return View("Register");
         }
+        [Authorize]
         public ActionResult Index()
         {
             var query = Query.NE("changeTime", "null");
@@ -129,8 +131,6 @@ namespace StudentSystem.Controllers.Register
             {
                 var query = Query.EQ("_id",new ObjectId(id));
                 //var stu = MongoInst.MCollection.FindOneById(new ObjectId(id));
-               
-
                 // MongoInst.MCollection.Remove(query);
                // var query = Query.EQ("stuName", name);
                 var updateQuery = Update.Set("changeTime", "null");

@@ -34,7 +34,11 @@ namespace StudentSystem.Models
         public string pwd { get; set; }
         //[BsonElement("mobNo")]
         [MaxLength(10,ErrorMessage ="Phone Number must have 10 digits")]
+        [MinLength(10, ErrorMessage = "Phone Number must have 10 digits")]
         [DataType(DataType.PhoneNumber,ErrorMessage ="Phone Number can't be characters")]
+        [Required(ErrorMessage = "You must provide a phone number")]
+        //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
+
         public string mobNo { get; set; }
 
         //[BsonElement("Address")]
