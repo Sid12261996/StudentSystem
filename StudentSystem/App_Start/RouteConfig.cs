@@ -23,13 +23,13 @@ namespace StudentSystem
             routes.MapRoute(
                 name: "Register",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Register", action = "register", id = UrlParameter.Optional }
+                defaults: new { controller = "Register", action = "Index", id = UrlParameter.Optional }
 
                 );
             routes.MapRoute(
                name: "Login",
                url: "{controller}/{action}/{id}",
-               defaults: new { controller = "Register", action = "", id = UrlParameter.Optional }
+               defaults: new { controller = "Register", action = "Login", id = UrlParameter.Optional }
 
                );
         }
