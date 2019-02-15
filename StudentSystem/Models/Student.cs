@@ -44,6 +44,8 @@ namespace StudentSystem.Models
         //[BsonElement("Address")]
         [DataType(DataType.MultilineText,ErrorMessage = "Invalid address format ")] [Required(ErrorMessage = "Required")]
         public string Address { get; set; }
+        [Required(ErrorMessage = "Mention your School Name")]
+        public string SchoolName { get; set; }
 
         public string changeTime = DateTime.Now.ToString();
         public string updateTime = DateTime.Now.ToString();

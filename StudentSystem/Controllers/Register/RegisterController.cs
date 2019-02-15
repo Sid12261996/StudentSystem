@@ -22,11 +22,14 @@ namespace StudentSystem.Controllers.Register
         // GET: Register
         public ActionResult Register()
         {
-            var tuple = new Tuple<Student,School>(new Student(),new School());
-            return View(tuple);
+            return View();
         }
+        public PartialViewResult SchoolName(School school)
+        {
+            return PartialView(school);
+        }
+      
 
-       
 
 
         // GET: Register/Details/5
@@ -68,7 +71,7 @@ namespace StudentSystem.Controllers.Register
             if (ModelState.IsValid) {
                 Stud.changeTime = DateTime.Now.ToString();
                 MongoInst.MCollection.Insert(Stud);
-
+                school.SchoolName = Stud.SchoolName;
                 MongoInst.SchoolCollection.Insert(school);
 
 
