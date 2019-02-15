@@ -20,6 +20,10 @@ namespace StudentSystem.Models
 
         }
         public MongoCollection<Student> MCollection => db.GetCollection<Student>("STUDENT");
+        public MongoCollection<School> SchoolCollection => db.GetCollection<School>("SCHOOL");
+        public MongoCollection<CollectionOfClasses> CollectionOfClasses => db.GetCollection<CollectionOfClasses>("CLASSES");
+        public MongoCollection<Attendance> Attendance => db.GetCollection<Attendance>("ATTENDANCE");
+        
 
     }
 }

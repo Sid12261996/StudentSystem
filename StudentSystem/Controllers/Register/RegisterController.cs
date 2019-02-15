@@ -16,18 +16,18 @@ namespace StudentSystem.Controllers.Register
     {
         
         public mongoConnection MongoInst = new mongoConnection();
-        //public Student Astudent = new Student();
-        //public IEnumerable<Student> s;
-        //public IMongoCollection<Student> mongo;
-    
+       
        
        
         // GET: Register
         public ActionResult Register()
         {
-            
-            return View();
+            var tuple = new Tuple<Student,School>(new Student(),new School());
+            return View(tuple);
         }
+
+       
+
 
         // GET: Register/Details/5
         [Authorize]
@@ -57,18 +57,21 @@ namespace StudentSystem.Controllers.Register
             var dummy = stu.ToList<Student>();
 
 
-
+            
             return View(dummy);
         }
 
-        // POST: Register
+        // POST: Register/Register
         [HttpPost]
-        public ActionResult Register(Student Stud)
+        public ActionResult Register(Student Stud,School school)
        {
             if (ModelState.IsValid) {
                 Stud.changeTime = DateTime.Now.ToString();
                 MongoInst.MCollection.Insert(Stud);
-                
+
+                MongoInst.SchoolCollection.Insert(school);
+
+
 
                 return RedirectToAction("Index");
             }

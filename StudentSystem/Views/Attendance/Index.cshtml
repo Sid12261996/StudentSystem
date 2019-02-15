@@ -1,0 +1,26 @@
+﻿@model IEnumerable<StudentSystem.Models.Attendance>
+@model IEnumerable<StudentSystem.Models.CollectionOfClasses>
+@model IEnumerable<StudentSystem.Models.School>
+    
+
+    <p>
+        
+    </p>
+<nav class="navba"></nav>
+    <table class="table">
+        <tr>
+            <th></th>
+        </tr>
+        
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </table>

@@ -153,8 +153,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AttendanceModule\AttendanceController.cs" />
     <Compile Include="Controllers\Login\LoginController.cs" />
+    <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\CollectionOfClasses.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\School.cs" />
+    <Compile Include="Models\ViewModel.cs" />
     <Compile Include="TestingObjectTypeSerializer.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Register\RegisterController.cs" />
@@ -223,6 +228,7 @@
     <Content Include="Views\Register\Error.cshtml" />
     <Content Include="Views\Register\Delete.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Attendance\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

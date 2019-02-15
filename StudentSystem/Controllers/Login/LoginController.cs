@@ -44,7 +44,7 @@ namespace StudentSystem.Controllers.Login
                     return RedirectToAction("Index", "Register");
 
                 }
-
+                ViewData["SignINerror"]= "Email or Password is Incorrect";
                 return View(user);
             }
             catch
