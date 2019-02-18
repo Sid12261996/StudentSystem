@@ -1,0 +1,51 @@
+﻿@model StudentSystem.Models.Attendance
+@section Scripts {
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="~/Content/Register.css" />
+
+    <script >
+
+        $(function () {
+            $("#DatePicker").datepicker({
+                minDate: -20, maxDate: "+0M +0D", defaultDate: new Date(), dateFormat: "dd M yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            }).datepicker("setDate", new Date);
+        });
+    </script>
+
+}
+<div class="row">
+    <h4 class="text-center">Attendance</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+
+    <nav class="nav-tabs" id="navBar">
+        <ul id="listItems">
+
+            <li>
+                <label>Classes *</label>
+                <select id="classInfo">
+                    <option>
+                        Select Class
+                    </option>
+                </select>
+            </li>
+            <li>
+                <label id="dateList">Date Of Attendance *</label>
+                @Html.TextBoxFor(Model => Model.dateOfAttendance, new { @id = "DatePicker", @class = "form-control date" })
+            </li>
+            <li>
+                <input type="button" value="Show" class="btn-success" id="butn-show" />
+            </li>
+        </ul>
+
+
+    </nav>
+
+</div>

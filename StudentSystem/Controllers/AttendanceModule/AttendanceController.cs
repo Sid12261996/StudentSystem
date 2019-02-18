@@ -9,7 +9,7 @@ namespace StudentSystem.Controllers.AttendanceModule
     public class AttendanceController : Controller
     {
         // GET: Attendance
-        public ActionResult Index()
+        public ActionResult Attendance()
         {
             return View();
         }

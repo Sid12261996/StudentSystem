@@ -13,35 +13,35 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
             @Html.TextBoxFor(Model => Model.stuName, new { @class = "name form-control ", placeholder = "Enter the Student Name" })
-            @Html.ValidationMessageFor(model => model.stuName, "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessageFor(model => model.stuName, "", new { @class = "text-danger" })
             <span class="Error" id="nameErr">Error</span>
             <br />
 
 
             @Html.TextBoxFor(Model => Model.email, new { type = "email", @class = "name form-control ", placeholder = "Enter your Email Address" })
-            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
             <span class="Error" id="emailErr"></span>
             <br />
 
             @Html.PasswordFor(Model => Model.pwd, new { @class = "name form-control", @id = "pwd", placeholder = "Password" })
-            @Html.ValidationMessageFor(model => model.pwd, "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessageFor(model => model.pwd, "", new { @class = "text-danger" })
             <span class="Error" id="pwdErr"></span>
-
             <br />
 
-            @Html.Password("Confirm", "", new { @class = "name form-control", @id = "cpwd", placeholder = "Confirm Password" })<br />
+
+            @Html.Password("Confirm", "", new { @class = "name form-control", @id = "cpwd", placeholder = "Confirm Password" })
             <span class="Error" id="cpwdErr"></span>
 
             <br />
 
             <select id="countryCode"></select>
             @Html.TextBoxFor(Model => Model.mobNo, new { @class = "name form-control", placeholder = "Enter mobile Number" })
-            @Html.ValidationMessageFor(model => model.mobNo, "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessageFor(model => model.mobNo, "", new { @class = "text-danger" })
             <span class="Error" id="mobErr"></span>
             <br />
 
             @Html.TextBoxFor(Model => Model.Address, new { @class = "name form-control", placeholder = "Address" })
-            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })<br />
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
             <span class="Error" id="addrErr"></span>
             <br />
 

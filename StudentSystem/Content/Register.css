@@ -23,13 +23,13 @@ h1 {
     font-family: Aharoni;
     color: white;
 }
-}
+
 body{
     padding:70px;
     
 }
 #butt {
-    margin:0px 100px;
+    margin:30px 100px;
 
 }
 #countryCode {
@@ -56,4 +56,34 @@ width:50px;
 #Form-Body {
     padding-left:20px;
     padding-right:20px;
+}
+#DatePicker, #classInfo {
+    width: 150px;
+    border-radius: 5px;
+   height:35px;
+}
+#DatePicker {
+    background-color:white;
+}
+
+    #dateList {
+        margin-top: 35px;
+    }
+#navBar {
+    border-right: 1px solid #9d9d9d;
+    width: 210px;
+    margin-left: 0px;
+    height: 100%;
+    padding: 5px;
+}
+#butn-show {
+    color:white;
+    background-color:dodgerblue;
+    width:80px;
+    border-radius:4px;
+    margin-top:30px;
+
+}
+#listItems {
+    list-style-type:none;
 }
