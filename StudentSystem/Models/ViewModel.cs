@@ -9,9 +9,9 @@ namespace StudentSystem.Models
     public class ViewModel
     {
         public IEnumerable <Student> students { get; set; }
-        public Attendance attendance = new Attendance();
+        public IEnumerable<Attendance> attendance { get; set; }
         public IEnumerable<School> schools { get; set; }
-
+        public IEnumerable<CollectionOfClasses> classes { get; set; }
 
 
 

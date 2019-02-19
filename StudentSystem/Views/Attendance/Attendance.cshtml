@@ -1,14 +1,15 @@
-﻿@model Tuple<Attendance,CollectionOfClasses>
-    @using StudentSystem.Models;
+﻿@model Tuple<StudentSystem.Models.CollectionOfClasses, StudentSystem.Models.Attendance>
+@using StudentSystem.Models;
+@using MongoDB.Bson;
 @section Scripts {
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  
+
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <link rel="stylesheet" href="~/Content/Register.css" />
 
-    <script >
+    <script>
 
         $(function () {
             $("#DatePicker").datepicker({
@@ -30,12 +31,21 @@
         <ul id="listItems">
 
             <li>
-                @Html.DropDownListFor(m=>m.)
-               
+                @Html.DropDownListFor(m => m.Item2._id,{ 
+                    foreach(var classes in Model.Item1.ClassName){
+                        new SelectList("_id", classes),
+
+
+
+                       } },
+                "--Select--",
+                new { @class = "selectpicker"}
+               )
+
             </li>
             <li>
                 <label id="dateList">Date Of Attendance *</label>
-                @Html.TextBoxFor(m=>m.dateOfAttendance, new { @id = "DatePicker", @class = "form-control date" })
+                @Html.TextBoxFor(m=>m.Item2.dateOfAttendance, new { @id = "DatePicker", @class = "form-control date" })
             </li>
             <li>
                 <input type="button" value="Show" class="btn-success" id="butn-show" />

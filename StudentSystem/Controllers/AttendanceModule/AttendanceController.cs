@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MongoDB.Bson;
 
 
 namespace StudentSystem.Controllers.AttendanceModule
@@ -15,11 +16,18 @@ namespace StudentSystem.Controllers.AttendanceModule
     {
         public mongoConnection MongoInst = new mongoConnection();
         // GET: Attendance
-        public ActionResult Attendance(CollectionOfClasses classes)
+        public ActionResult Attendance(CollectionOfClasses classes,Attendance attendance, string id)
         {
-            var cl = MongoInst.classCollection.FindAll();
-           
-            return View(cl.ToList());
+            var query = Query.EQ("_id", new ObjectId(id));
+
+
+
+            var stu = MongoInst.MCollection.FindAs<Student>(query);
+
+
+
+            var T = new Tuple<CollectionOfClasses, Attendance>(classes,attendance);
+            return View(T);
         }
 
       
