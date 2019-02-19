@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
-using MongoDB.Driver.Linq;
+
 using StudentSystem.Models;
 
 namespace StudentSystem.Controllers.Register
@@ -24,10 +24,7 @@ namespace StudentSystem.Controllers.Register
         {
             return View();
         }
-        public PartialViewResult SchoolName(School school)
-        {
-            return PartialView(school);
-        }
+      
       
 
 
@@ -55,7 +52,7 @@ namespace StudentSystem.Controllers.Register
         public ActionResult Index()
         {
             var query = Query.NE("changeTime", "null");
-            var stu = MongoInst.MCollection.Find(query);
+            var stu = MongoInst.MCollection.Find(query );
 
             var dummy = stu.ToList<Student>();
 

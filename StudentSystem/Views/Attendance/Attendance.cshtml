@@ -1,4 +1,5 @@
-﻿@model StudentSystem.Models.Attendance
+﻿@model Tuple<Attendance,CollectionOfClasses>
+    @using StudentSystem.Models;
 @section Scripts {
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   
@@ -29,16 +30,12 @@
         <ul id="listItems">
 
             <li>
-                <label>Classes *</label>
-                <select id="classInfo">
-                    <option>
-                        Select Class
-                    </option>
-                </select>
+                @Html.DropDownListFor(m=>m.)
+               
             </li>
             <li>
                 <label id="dateList">Date Of Attendance *</label>
-                @Html.TextBoxFor(Model => Model.dateOfAttendance, new { @id = "DatePicker", @class = "form-control date" })
+                @Html.TextBoxFor(m=>m.dateOfAttendance, new { @id = "DatePicker", @class = "form-control date" })
             </li>
             <li>
                 <input type="button" value="Show" class="btn-success" id="butn-show" />

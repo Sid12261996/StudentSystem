@@ -13,19 +13,17 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10 col-xs-10">
-                @Html.LabelFor(Model => Model.Email)
-                @Html.EditorFor(model => model.Email, new { @class = "form-control" })
+                @Html.LabelFor(Model => Model.Email)<br />
+                @Html.TextBoxFor(model => model.Email, new { @class = "name form-control " })<br /><br />
                 @Html.LabelFor(Model => Model.Password)
-                @Html.PasswordFor(Model => Model.Password, new { @class = "name form-control", id = "pwd" })
+                @Html.PasswordFor(Model => Model.Password, new { @class = "name form-control", id = "" })
                 <input type="submit" value="Log In" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
