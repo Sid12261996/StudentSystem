@@ -31,13 +31,13 @@
         <ul id="listItems">
 
             <li>
-                @Html.DropDownListFor(m => m.Item2._id,{ 
-                    foreach(var classes in Model.Item1.ClassName){
+                @Html.DropDownListFor(m => m.Item2._id,
+                   
                         new SelectList("_id", classes),
 
 
 
-                       } },
+                       ,
                 "--Select--",
                 new { @class = "selectpicker"}
                )
