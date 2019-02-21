@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -14,7 +17,9 @@ namespace StudentSystem.Controllers.Register
 
     public class RegisterController : Controller
     {
-        
+        private ApplicationUserManager _userManager;
+        private ApplicationSignInManager _signInManager;
+
         public mongoConnection MongoInst = new mongoConnection();
        
        
@@ -60,11 +65,36 @@ namespace StudentSystem.Controllers.Register
             
             return View(dummy);
         }
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
+
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
         // POST: Register/Register
         [HttpPost]
-        public ActionResult Register(Student Stud,School school)
+        public  ActionResult Register(Student Stud,School school)
        {
+          
             if (ModelState.IsValid) {
                 Stud.changeTime = DateTime.Now.ToString();
                 MongoInst.MCollection.Insert(Stud);
@@ -72,6 +102,7 @@ namespace StudentSystem.Controllers.Register
                 MongoInst.SchoolCollection.Insert(school);
 
 
+              
 
                 return RedirectToAction("Index");
             }

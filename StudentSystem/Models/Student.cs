@@ -20,6 +20,7 @@ namespace StudentSystem.Models
         [DataType(DataType.EmailAddress,ErrorMessage ="Email address not in correct Format")]
         //[BsonElement("email")]
         [Required]
+        [EmailAddress(ErrorMessage = "Enter Your Email in the Format name@domain.com")]
         public string email { get; set; }
         [DataType(DataType.Password,ErrorMessage ="Password not in format")]
         [Required(ErrorMessage = "Set a Password")]
@@ -27,8 +28,8 @@ namespace StudentSystem.Models
         [MinLength(6,ErrorMessage ="Too short to be a password")]
         [MembershipPassword(
         MinRequiredNonAlphanumericCharacters = 1,
-        MinNonAlphanumericCharactersError = "Your password needs to contain at least one symbol (!, @, #, etc).",
-        ErrorMessage = "Your password must be 6 characters long and contain at least one symbol (!, @, #, etc).",
+        MinNonAlphanumericCharactersError = "Your password needs to contain at least one Special Character (!, @, #, etc).",
+        ErrorMessage = "Your password must be 6 characters long and contain at least one Special Character  (!, @, #, etc).",
         MinRequiredPasswordLength = 6
 )]
         public string pwd { get; set; }

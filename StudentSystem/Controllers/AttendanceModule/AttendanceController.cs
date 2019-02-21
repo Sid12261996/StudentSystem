@@ -18,13 +18,9 @@ namespace StudentSystem.Controllers.AttendanceModule
         // GET: Attendance
         public ActionResult Attendance(CollectionOfClasses classes,Attendance attendance, string id)
         {
-            var query = Query.EQ("_id", new ObjectId(id));
-
-
-
+            var query = Query.EQ("email", id);
+            
             var stu = MongoInst.MCollection.FindAs<Student>(query);
-
-
 
             var T = new Tuple<CollectionOfClasses, Attendance>(classes,attendance);
             return View(T);
