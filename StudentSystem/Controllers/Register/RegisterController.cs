@@ -14,7 +14,7 @@ using StudentSystem.Models;
 
 namespace StudentSystem.Controllers.Register
 {
-
+    [Authorize]
     public class RegisterController : Controller
     {
         private ApplicationUserManager _userManager;
@@ -25,8 +25,10 @@ namespace StudentSystem.Controllers.Register
        
        
         // GET: Register
-        public ActionResult Register()
+        public ActionResult Register(Student stud, CollectionOfClasses classes)
         {
+            
+            
             return View();
         }
       
@@ -92,17 +94,46 @@ namespace StudentSystem.Controllers.Register
         }
         // POST: Register/Register
         [HttpPost]
-        public  ActionResult Register(Student Stud,School school)
+        public  ActionResult Register(Student Stud,School school,User user, CollectionOfClasses classes)
        {
-          
+            
             if (ModelState.IsValid) {
+
+                var searchForDuplicateClass = Query.EQ("ClassName", Stud.classname);
+                var searchForDuplicateSchool = Query.EQ("SchoolName", Stud.SchoolName);
+                var searchForDuplicateUser = Query.EQ("email", Stud.email);
                 Stud.changeTime = DateTime.Now.ToString();
+                user.email = Stud.email;
+                user.pwd = Stud.pwd;
                 MongoInst.MCollection.Insert(Stud);
-                school.SchoolName = Stud.SchoolName;
-                MongoInst.SchoolCollection.Insert(school);
-
-
               
+
+
+                var resultClass = MongoInst.classCollection.Find(searchForDuplicateClass).SetFields(Fields.Exclude("UserId,StudentId"));
+                var resultSchool = MongoInst.SchoolCollection.Find(searchForDuplicateSchool);
+                var resultUser = MongoInst.Users.Find(searchForDuplicateUser).SetFields(Fields.Exclude("pwd,_id"));
+
+
+
+                if (resultSchool.ToList().Count == 0)
+                {
+                    school.SchoolName = Stud.SchoolName;
+                    MongoInst.SchoolCollection.Insert(school);
+                   
+                }
+                if (resultClass.ToList().Count == 0)
+                {
+                    classes.ClassName = Stud.classname;
+                    classes.StudentId = Stud._id;
+                    classes.SchoolId = school._id;
+                    MongoInst.classCollection.Insert(classes);
+
+                }
+                if (resultUser.ToList().Count == 0)
+                {
+                    user._id = school._id;
+                    MongoInst.Users.Insert(user);
+                }
 
                 return RedirectToAction("Index");
             }
@@ -144,7 +175,7 @@ namespace StudentSystem.Controllers.Register
            
         }
 
-
+       
 
         // GET: Register/Delete/5
         public ActionResult Delete(string name)

@@ -14,6 +14,8 @@ namespace StudentSystem.Models
         public string ClassName;
         [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId StudentId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId SchoolId { get; set; }
 
     }
 }

@@ -1,4 +1,4 @@
-﻿@model StudentSystem.Models.LoginUser
+﻿@model StudentSystem.Models.User
 
 
 @using (Html.BeginForm()) 
@@ -7,17 +7,19 @@
     
     <div class="form-horizontal">
         <h4>Login</h4>
-        <h5>@ViewData["SignINerror "]</h5>
+        <h5>@ViewBag.ErrorMessage</h5>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10 col-xs-10">
-                @Html.LabelFor(Model => Model.Email)<br />
-                @Html.TextBoxFor(model => model.Email, new { @class = "name form-control " })<br /><br />
-                @Html.LabelFor(Model => Model.Password)
-                @Html.PasswordFor(Model => Model.Password, new { @class = "name form-control", id = "" })
-                <input type="submit" value="Log In" class="btn btn-default" />
+                @Html.LabelFor(Model => Model.email)<br />
+                @Html.TextBoxFor(model => model.email, new { @class = "name form-control " })<br /><br />
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                @Html.LabelFor(Model => Model.pwd)
+                @Html.PasswordFor(Model => Model.pwd, new { @class = "name form-control", id = "" })
+                @Html.ValidationMessageFor(model => model.pwd, "", new { @class = "text-danger" })
+                <input type="submit" value="Log In" class="btn btn-default" formmethod="post" />
             </div>
         </div>
     </div>

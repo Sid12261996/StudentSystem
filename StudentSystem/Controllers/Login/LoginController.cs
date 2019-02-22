@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using StudentSystem.Models;
@@ -28,23 +29,25 @@ namespace StudentSystem.Controllers.Login
 
         // POST: Login/Login
         [HttpPost]
-        public ActionResult Login( LoginUser user, string ReturnUrl)
+        public ActionResult Login( User user, string ReturnUrl)
         {
             try
             {
-                IMongoQuery queryEmail = Query.EQ("email",user.Email);
+                IMongoQuery queryEmail = Query.EQ("email",user.email);
              
-                var UserData = mongo.MCollection.FindOne(queryEmail);
+                var UserData = mongo.Users.FindOne(queryEmail);
                 UserData.ToString();
 
-                if (UserData.email == user.Email && UserData.pwd == user.Password) {
+                
 
-                    FormsAuthentication.SetAuthCookie(user.Email,false);
+                if (UserData.email == user.email && UserData.pwd == user.pwd) {
+
+                    FormsAuthentication.SetAuthCookie(user.email,false);
                     string dummy = ReturnUrl;
                     return RedirectToAction("Index", "Register");
 
                 }
-                ViewData["SignINerror"]= "Email or Password is Incorrect";
+                ViewBag.ErrorMessage= "Email or Password is Incorrect";
                 return View(user);
             }
             catch

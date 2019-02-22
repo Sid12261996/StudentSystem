@@ -11,12 +11,14 @@
         {
             ++i;
 
-            <li>
-                @Html.Label("Student") @i &nbsp;<span>:</span>
-                @Html.ActionLink(item.stuName, "Details", new { id = item._id })
+    <li>
+        @Html.Label("Student") @i &nbsp;<span>:</span>
+        @Html.ActionLink(item.stuName, "Details", new { id = item._id })
+    </li>
+            <li><a href="@Url.Action("Attendance","Attendance",new { id=item._id})">Attendance</a></li>
 
-            </li>
-            
+           
+
         }
     }
 </ul>

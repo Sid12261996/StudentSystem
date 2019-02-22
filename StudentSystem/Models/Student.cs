@@ -47,12 +47,32 @@ namespace StudentSystem.Models
         public string Address { get; set; }
         [Required(ErrorMessage = "Mention your School Name")]
         public string SchoolName { get; set; }
-
+        public string classname { get; set; }
         public string changeTime = DateTime.Now.ToString();
         public string updateTime = DateTime.Now.ToString();
         public string deleteTime = DateTime.Now.ToString();
         public string CreateTime = DateTime.Now.ToString();
 
+
+
+    }
+
+    public class User {
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId _id { get; set; }
+
+        [Required]
+        [EmailAddress(ErrorMessage = "Enter Your Email in the Format name@domain.com")]
+        public string email { get; set; }
+
+        [MinLength(6, ErrorMessage = "Too short to be a password")]
+        [MembershipPassword(
+       MinRequiredNonAlphanumericCharacters = 1,
+       MinNonAlphanumericCharactersError = "Your password needs to contain at least one Special Character (!, @, #, etc).",
+       ErrorMessage = "Your password must be 6 characters long and contain at least one Special Character  (!, @, #, etc).",
+       MinRequiredPasswordLength = 6
+)]
+        public string pwd { get; set; }
 
 
     }

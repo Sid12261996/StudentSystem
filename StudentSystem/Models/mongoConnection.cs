@@ -23,7 +23,7 @@ namespace StudentSystem.Models
         public MongoCollection<School> SchoolCollection => db.GetCollection<School>("SCHOOL");
         public MongoCollection<CollectionOfClasses> classCollection => db.GetCollection<CollectionOfClasses>("CLASSES");
         public MongoCollection<Attendance> Attendance => db.GetCollection<Attendance>("ATTENDANCE");
-        
+        public MongoCollection<User> Users => db.GetCollection<User>("USER");
 
     }
 }

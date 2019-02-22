@@ -26,7 +26,7 @@ namespace StudentSystem.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("mongodb://utkarsh:admin123123@ds331735.mlab.com:31735/productmanagementdb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("mongodb://utkarsh:admin123123@ds147125.mlab.com:47125/productmanagementdbbeta")]
         public string connString {
             get {
                 return ((string)(this["connString"]));
@@ -35,7 +35,7 @@ namespace StudentSystem.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("productmanagementdb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("productmanagementdbbeta")]
         public string dbName {
             get {
                 return ((string)(this["dbName"]));

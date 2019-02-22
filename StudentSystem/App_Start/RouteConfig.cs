@@ -32,6 +32,12 @@ namespace StudentSystem
                defaults: new { controller = "Register", action = "Login", id = UrlParameter.Optional }
 
                );
+            routes.MapRoute(
+             name: "Attendance",
+             url: "{controller}/{action}/{id}",
+             defaults: new { controller = "Attendance", action = "Attendance", id = "Attendance"}
+
+             );
         }
     }
 }

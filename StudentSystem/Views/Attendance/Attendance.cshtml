@@ -1,4 +1,4 @@
-﻿@model Tuple<StudentSystem.Models.CollectionOfClasses, StudentSystem.Models.Attendance>
+﻿@model Tuple<IEnumerable<CollectionOfClasses>, StudentSystem.Models.Attendance>
 @using StudentSystem.Models;
 @using MongoDB.Bson;
 @section Scripts {
@@ -22,6 +22,18 @@
     </script>
 
 }
+
+@{ 
+    List<SelectListItem> classNames = new List<SelectListItem>();
+    foreach (var i in Model.Item1)
+    {
+
+        classNames.Add(new SelectListItem() { Text = i.ClassName, Value = "val" });
+    }
+
+
+
+}
 <div class="row">
     <h4 class="text-center">Attendance</h4>
     <hr />
@@ -31,13 +43,7 @@
         <ul id="listItems">
 
             <li>
-                @Html.DropDownListFor(m => m.Item2._id,
-                   
-                        new SelectList("_id", classes),
-
-
-
-                       ,
+                @Html.DropDownListFor(m => m.Item2._id, classNames ,
                 "--Select--",
                 new { @class = "selectpicker"}
                )

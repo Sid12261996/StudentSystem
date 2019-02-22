@@ -5,12 +5,12 @@
     <Setting Name="connString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;mongodb://utkarsh:admin123123@ds331735.mlab.com:31735/productmanagementdb&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;mongodb://utkarsh:admin123123@ds147125.mlab.com:47125/productmanagementdbbeta&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">mongodb://utkarsh:admin123123@ds331735.mlab.com:31735/productmanagementdb</Value>
+      <Value Profile="(Default)">mongodb://utkarsh:admin123123@ds147125.mlab.com:47125/productmanagementdbbeta</Value>
     </Setting>
     <Setting Name="dbName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">productmanagementdb</Value>
+      <Value Profile="(Default)">productmanagementdbbeta</Value>
     </Setting>
   </Settings>
 </SettingsFile>
