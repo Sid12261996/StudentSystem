@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -17,19 +18,22 @@ namespace StudentSystem.Controllers.Register
     [Authorize]
     public class RegisterController : Controller
     {
+       
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
 
         public mongoConnection MongoInst = new mongoConnection();
-       
-       
-       
+
+
+
         // GET: Register
-        public ActionResult Register(Student stud, CollectionOfClasses classes)
+        public ActionResult Register()
         {
             
+                
+
+                return View();
             
-            return View();
         }
       
       
@@ -93,24 +97,43 @@ namespace StudentSystem.Controllers.Register
             }
         }
         // POST: Register/Register
+
+        public ActionResult GetClass()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GetClass(CollectionOfClasses s)
+        {
+
+            return View();
+        }
+
         [HttpPost]
         public  ActionResult Register(Student Stud,School school,User user, CollectionOfClasses classes)
        {
             
             if (ModelState.IsValid) {
 
-                var searchForDuplicateClass = Query.EQ("ClassName", Stud.classname);
+               
                 var searchForDuplicateSchool = Query.EQ("SchoolName", Stud.SchoolName);
                 var searchForDuplicateUser = Query.EQ("email", Stud.email);
                 Stud.changeTime = DateTime.Now.ToString();
-                user.email = Stud.email;
+                user.Email = Stud.email;
                 user.pwd = Stud.pwd;
                 MongoInst.MCollection.Insert(Stud);
-              
+                var resultSchool = MongoInst.SchoolCollection.Find(searchForDuplicateSchool);
+                string d = "";
+                foreach (var i in resultSchool)
+                { d = i._id.ToString(); }
 
+
+                var searchForDuplicateClass = Query.EQ("_id", new ObjectId(d));
 
                 var resultClass = MongoInst.classCollection.Find(searchForDuplicateClass).SetFields(Fields.Exclude("UserId,StudentId"));
-                var resultSchool = MongoInst.SchoolCollection.Find(searchForDuplicateSchool);
+                
                 var resultUser = MongoInst.Users.Find(searchForDuplicateUser).SetFields(Fields.Exclude("pwd,_id"));
 
 
@@ -119,13 +142,14 @@ namespace StudentSystem.Controllers.Register
                 {
                     school.SchoolName = Stud.SchoolName;
                     MongoInst.SchoolCollection.Insert(school);
-                   
+
                 }
+               
                 if (resultClass.ToList().Count == 0)
                 {
                     classes.ClassName = Stud.classname;
                     classes.StudentId = Stud._id;
-                    classes.SchoolId = school._id;
+                    classes.SchoolId = new ObjectId(d);
                     MongoInst.classCollection.Insert(classes);
 
                 }
@@ -212,9 +236,15 @@ namespace StudentSystem.Controllers.Register
             }
         }
 
-        public Student updateDate(Student stud) {
+        public Student updateDate(Student stud)
+        {
             stud.changeTime = DateTime.Now.ToString();
             return stud;
         }
+       
     }
+
+
+
+
 }

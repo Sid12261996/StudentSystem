@@ -8,6 +8,7 @@ using MongoDB.Bson;
 
 namespace StudentSystem.Controllers.AttendanceModule
 {
+    using MongoDB.Driver;
     using MongoDB.Driver.Builders;
     using StudentSystem.Models;
  
@@ -32,7 +33,7 @@ namespace StudentSystem.Controllers.AttendanceModule
             foreach (var i in schoolId) { p = i._id.ToString(); }
             
             var q = Query.EQ("SchoolId", new ObjectId(p));
-            var stu = MongoInst.classCollection.FindAs<CollectionOfClasses>(q).SetFields(Fields.Exclude("StudentId,SchoolId"));
+            var stu = MongoInst.classCollection.FindAs<CollectionOfClasses>(q).SetFields(Fields.Exclude("StudentId,SchoolId")).SetSortOrder(SortBy.Ascending("ClassName"));
             var dummy = stu.ToList();
             
            

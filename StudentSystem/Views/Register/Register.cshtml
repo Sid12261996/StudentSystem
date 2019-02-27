@@ -2,13 +2,10 @@
   
 <div class="row text-center">
 
-    <div class=" col-md-12 col-xs-10 Form col-xs-push-1 col-lg-push-5 col-md-push-5 col-md-pull-5 col-sm-push-4 col-xl-push-4"  id="FormBegin" >
+    <div class=" col-md-12 col-xs-10 Form col-xs-push-1 col-lg-push-5 col-md-push-5 col-md-pull-5 col-sm-push-4 col-xl-push-5"  id="FormBegin" >
 
         <h1>Register </h1>
-        
-
-      
-
+ 
         <form id="Form-Body">
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -33,9 +30,10 @@
             @Html.Password("Confirm", "", new { @class = "name form-control", @id = "cpwd", placeholder = "Confirm Password" })
             <span class="Error" id="cpwdErr"></span>
 
-            <br />
+             <br />
+        
 
-            <select id="countryCode"></select>
+            @Html.DropDownListFor(m => m.CountryCode,Model.CountryCode, new { id = "CountryCode" })
             @Html.TextBoxFor(Model => Model.mobNo, new { @class = "name form-control", placeholder = "Enter mobile Number" })
             @Html.ValidationMessageFor(model => model.mobNo, "", new { @class = "text-danger" })
             <span class="Error" id="mobErr"></span>
@@ -47,7 +45,7 @@
             <br />
             @Html.TextBoxFor(Model => Model.classname, new { @class = "name form-control", placeholder = "Class Name" })
             @Html.ValidationMessageFor(model => model.classname, "", new { @class = "text-danger" })
-
+            <br />
             @Html.TextBoxFor(Model => Model.SchoolName, new { @class = "name form-control", placeholder = "School Name" })
             @Html.ValidationMessageFor(model => model.SchoolName, "", new { @class = "text-danger" })
             <span class="Error" id="addrErr"></span>
@@ -55,8 +53,6 @@
         </form>
         <script src="~/Scripts/Validation.js" type="text/javascript"></script>
         <script src="~/Scripts/countryCode.js"></script>
-        <h4 style="color:azure">
-            Already an User?? Then @Html.ActionLink("Sign In", "Login","Login")
-        </h4>
+     
     </div>
 </div>

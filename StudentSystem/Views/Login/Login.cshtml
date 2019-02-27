@@ -21,10 +21,11 @@
                 @Html.ValidationMessageFor(model => model.pwd, "", new { @class = "text-danger" })
                 <input type="submit" value="Log In" class="btn btn-default" formmethod="post" />
             </div>
-        </div>
+        </div><p>
+    Not a User @Html.ActionLink("Click here", "UserRegister", "Login")  to Yourself
+</p>
     </div>
 }
-
 
 
 @section Scripts {

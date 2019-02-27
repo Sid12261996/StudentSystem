@@ -14,7 +14,7 @@ using StudentSystem.Models;
 
 namespace StudentSystem.Controllers.Login
 {
-  
+
 
     public class LoginController : Controller
     {
@@ -29,25 +29,25 @@ namespace StudentSystem.Controllers.Login
 
         // POST: Login/Login
         [HttpPost]
-        public ActionResult Login( User user, string ReturnUrl)
+        public ActionResult Login(User user, string ReturnUrl)
         {
             try
             {
-                IMongoQuery queryEmail = Query.EQ("email",user.email);
-             
+                IMongoQuery queryEmail = Query.EQ("email", user.Email);
+
                 var UserData = mongo.Users.FindOne(queryEmail);
                 UserData.ToString();
 
-                
 
-                if (UserData.email == user.email && UserData.pwd == user.pwd) {
 
-                    FormsAuthentication.SetAuthCookie(user.email,false);
+                if (UserData.Email == user.Email && UserData.pwd == user.pwd) {
+
+                    FormsAuthentication.SetAuthCookie(user.Email, false);
                     string dummy = ReturnUrl;
                     return RedirectToAction("Index", "Register");
 
                 }
-                ViewBag.ErrorMessage= "Email or Password is Incorrect";
+                ViewBag.ErrorMessage = "Email or Password is Incorrect";
                 return View(user);
             }
             catch
@@ -56,6 +56,13 @@ namespace StudentSystem.Controllers.Login
             }
         }
 
-        
+        public ActionResult LogOut() {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
+        public ActionResult UserRegister() {
+            return View();
+        }
+
     }
 }

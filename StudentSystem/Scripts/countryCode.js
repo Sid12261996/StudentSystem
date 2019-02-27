@@ -10,11 +10,11 @@
         //contentType: "application/json",
         success: function (data) {
 
-            countryCode.append("<option>" + "IN" + " " + "+91" + "</option>");
+            countryCode.append("<option>" + "India" + " " + "+91" + "</option>");
 
             $.each(data, function (Index, item) {
                 var countrycallingCode = item.callingCodes;
-                var abbr = item.alpha2Code;
+                var abbr = item.name;
                 countryCode.append("<option>" +abbr +" " + countrycallingCode+"</option>");
                     });
         }
